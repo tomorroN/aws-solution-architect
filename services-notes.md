@@ -11,6 +11,9 @@ then continuously processing the data, be it to transform the data before emitti
 and analytics, or derive more complex data streams for further processing. Kinesis data streams can continuously capture 
 gigabytes of data per second from hundreds of thousands of sources such as website clickstreams, database event streams, 
 financial transactions, social media feeds, IT logs, and location-tracking events.
+- **Enhanced Fan-Out** - With enhanced fan-out developers can register stream consumers to use enhanced fan-out and 
+receive their own 2MB/second pipe of read throughput per shard, and this throughput automatically scales with the number of shards in a stream.
+![img.png](diagrams/amazon-kinesis-data-streams-enhanced-fan-out-diagram.png)
 
 ![img.png](diagrams/amazon-kinesis-data-streams-diagram.png)
 
@@ -51,10 +54,18 @@ Max 7 instances per AZ per group.
   compliance and licensing requirements.
   - **Dedicated Instance** - Instances that run on hardware dedicated to a single customer, but do not provide visibility into 
   the underlying host.
+- A **launch template** is similar to a **launch configuration**, in that it specifies instance configuration information. 
+  It includes the ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and other parameters 
+  used to launch EC2 instances. However, defining a launch template instead of a launch configuration allows you to have 
+- multiple versions of a launch template.
 
 **Amazon EBS (Elastic Block Store)** - high-performance block storage service designed for use with EC2 for both throughput
 and transaction-intensive workloads at any scale. By default, the root volume for an AMI backed by Amazon EBS is deleted
-when the instance terminates.
+when the instance terminates. When you create an encrypted Amazon EBS volume and attach it to a supported instance type, 
+data stored at rest on the volume, data moving between the volume and the instance, snapshots created from the volume and
+volumes created from those snapshots are all encrypted. It uses AWS Key Management Service (AWS KMS) customer master keys (CMK)
+when creating encrypted volumes and snapshots. Encryption operations occur on the servers that host Amazon EC2 instances,
+ensuring the security of both data-at-rest and data-in-transit between an instance and its attached Amazon EBS storage.
 
 **Amazon Aurora** - MySQL and PostgreSQL-compatible relational database built for the cloud, that combines 
 the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open 
@@ -91,8 +102,10 @@ storage and analysis. The given use-case is not about data warehousing, so this 
 **AWS Database Migration Service** - helps you migrate databases to AWS quickly and securely. The source database remains fully
 operational during the migration, minimizing downtime to applications that rely on the database. With AWS Database Migration Service,
 you can continuously replicate your data with high availability and consolidate databases into a petabyte-scale data warehouse
-by streaming data to Amazon Redshift and Amazon S3.
+by streaming data to Amazon Redshift and Amazon S3. 
 ![img.png](diagrams/aws-database-migration-service.png)
+
+**AWS Schema Conversion Tool (AWS SCT)** - tool to convert your existing database schema from one database engine to another.
 
 **Amazon GuardDuty** - Threat detection service that continuously monitors for malicious activity and unauthorized behavior.
 GuardDuty analyzes continuous streams of meta-data generated from your account and network activity found in AWS CloudTrail Events, 
