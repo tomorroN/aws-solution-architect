@@ -19,6 +19,11 @@ powered by AWS PrivateLink without requiring an internet gateway, NAT device, VP
 Instances in your VPC do not require public IP addresses to communicate with resources in the service. AWS PrivateLink 
 simplifies the security of data shared with cloud-based applications by eliminating the exposure of data to the public Internet.
 When you use VPC endpoint, the traffic between your VPC and the other AWS service does not leave the Amazon network
+- Endpoints can be of two types:
+  - **Interface Endpoint**: An elastic network interface (ENI) with a private IP address that serves as an entry point for traffic
+    destined to a supported AWS service or a VPC endpoint service.
+  - **Gateway Endpoint**: A gateway that you specify as a target in your route table for traffic destined to a supported AWS service.
+    Currently, gateway endpoints are supported for Amazon S3 and DynamoDB.
 
 **VPC Peering connection** - A VPC peering connection is a networking connection between two VPCs that enables you to route 
 traffic between them using private IPv4 addresses or IPv6 addresses. Instances in either VPC can communicate with each other
@@ -31,3 +36,13 @@ network connection between your on-premises data center and AWS.
   - **Private Virtual Interface**: Connects to a VPC using a private IP address.
   - **Public Virtual Interface**: Connects to AWS public services (like S3, DynamoDB) using public IP addresses.
   - **Transit Virtual Interface**: Used with AWS Transit Gateway for connecting multiple VPCs and on-premises networks.
+
+**Amazon VPC Transit Gateway** - network transit hub used to interconnect virtual private clouds (VPCs) and on-premises
+networks. As your cloud infrastructure expands globally, inter-Region peering connects transit gateways together using 
+the AWS Global Infrastructure. All network traffic between AWS data centers is automatically encrypted at the physical layer.
+
+![img.png](diagrams/amazon-vpc-transit-gateway-diagram.png)
+
+**Security Groups** vs **NACLs**:
+- **Security Groups**: Stateful, operate at the instance level, allow or deny traffic based on rules, and automatically allow return traffic.
+- **Network Access Control Lists (NACLs)**: Stateless, operate at the subnet level, allow or deny traffic based on rules, and require explicit rules for return traffic.

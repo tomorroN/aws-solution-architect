@@ -1,7 +1,10 @@
 **Amazon CloudFront** - CDN, edges, caching, origin failover
 
-**Amazon Global Accelerator** - Improve availability and performance globally. UDP, IoT (MQTT), Voice Over IP, HTTP. 
-CloudFront is better for improving application resiliency to handle spikes in traffic.
+**Amazon Global Accelerator** - network layer service that directs traffic to optimal endpoints over the AWS global network,
+this improves the availability and performance of your internet applications. It provides two static anycast IP addresses
+that act as a fixed entry point to your application endpoints in a single or multiple AWS Regions, such as your Application Load Balancers,
+Network Load Balancers, Elastic IP addresses or Amazon EC2 instances, in a single or in multiple AWS regions. 
+UDP, IoT (MQTT), Voice Over IP, HTTP. CloudFront is better for improving application resiliency to handle spikes in traffic.
 
 **Amazon Aurora** - if the writer instance in a cluster with read replicas becomes unavailable, Aurora automatically 
 promotes one of the reader instances to take place as a new writer. Up to 15 Replicas can be distributed across the Availability Zones (AZs)
@@ -179,3 +182,6 @@ ECS allows you to easily run, scale, and secure Docker container applications on
 **AWS Lambda** - With AWS Lambda, you can run code without provisioning or managing servers. You pay only for the compute time
 that you consume—there’s no charge when your code isn’t running. You can run code for virtually any type of application or
 backend service—all with zero administration.
+- [Best practices for AWS Lambda](https://aws.amazon.com/blogs/architecture/best-practices-for-developing-on-aws-lambda/)
+- **Lambda layers** - distribution mechanism for libraries, custom runtimes, and other dependencies that you can use in your Lambda functions.
+![img.png](diagrams/aws-lambda-layer-diagram.png)
