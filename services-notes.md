@@ -36,6 +36,10 @@ If object size is greater than 100 MB, multipart upload is recommended.
   - **S3 Glacier** - Low-cost storage for archival data with retrieval times ranging from minutes to hours.
   - **S3 Glacier Deep Archive** - Lowest-cost storage class for long-term archival data with retrieval times of up to 12 hours.
   ![img.png](diagrams/amazon-s3-transitions-diagram.png)
+- **S3 Object Lock** - Allows you to store objects using a write-once-read-many (WORM) model. It can help you prevent objects
+from being deleted or overwritten for a fixed amount of time or indefinitely.
+- **S3 Object Versioning** - Enables you to keep multiple versions of an object in the same bucket. It helps protect against accidental deletions
+- 
 
 **Amazon EC2 (Elastic Compute Cloud)** - Virtual servers, auto-scaling, load balancing, security groups, EBS volumes.
 Max 7 instances per AZ per group.
@@ -66,6 +70,10 @@ data stored at rest on the volume, data moving between the volume and the instan
 volumes created from those snapshots are all encrypted. It uses AWS Key Management Service (AWS KMS) customer master keys (CMK)
 when creating encrypted volumes and snapshots. Encryption operations occur on the servers that host Amazon EC2 instances,
 ensuring the security of both data-at-rest and data-in-transit between an instance and its attached Amazon EBS storage.
+
+**Amazon Relational Database Service (Amazon RDS)** - managed service that makes it easy to set up, operate, and scale a relational database
+in the cloud. It provides cost-efficient and resizable capacity, while managing time-consuming database administration tasks,
+freeing you to focus on your applications and business. [Amazon RDS FAQs](https://aws.amazon.com/rds/faqs)
 
 **Amazon Aurora** - MySQL and PostgreSQL-compatible relational database built for the cloud, that combines 
 the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open 
@@ -157,3 +165,17 @@ to decouple the producers and consumers for the real-time data processor as desc
 **Amazon Simple Queue Service (Amazon SQS)** - offers a secure, durable, and available hosted queue that lets you integrate and
 decouple distributed software systems and components. SQS cannot be used to decouple the producers and consumers for the 
 real-time data processor as described in the given use-case.
+
+**AWS DataSync** - online data transfer service that simplifies, automates, and accelerates copying large amounts of data
+between on-premises storage systems and AWS Storage services, as well as between AWS Storage services. You can use AWS DataSync
+to migrate data located on-premises, at the edge, or in other clouds to Amazon S3, Amazon EFS, Amazon FSx for Windows File Server,
+Amazon FSx for Lustre, Amazon FSx for OpenZFS, and Amazon FSx for NetApp ONTAP.
+![img.png](diagrams/aws-data-sync-diagram.png)
+
+**Amazon Elastic Container Service (Amazon ECS)** - fully managed container orchestration service. 
+ECS allows you to easily run, scale, and secure Docker container applications on AWS.
+![img.png](diagrams/amazon-ecs-diagram.png)
+
+**AWS Lambda** - With AWS Lambda, you can run code without provisioning or managing servers. You pay only for the compute time
+that you consume—there’s no charge when your code isn’t running. You can run code for virtually any type of application or
+backend service—all with zero administration.
