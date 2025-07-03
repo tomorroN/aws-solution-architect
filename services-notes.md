@@ -231,3 +231,10 @@ for users, and give them access to other AWS services.
 - Use an identity pool in the following scenarios:
   - Give your users access to AWS resources, such as an Amazon Simple Storage Service (Amazon S3) bucket or an Amazon DynamoDB table.
   - Generate temporary AWS credentials for unauthenticated users.
+
+**CloudWatch** - service that monitors applications, responds to performance changes, optimizes resource use, and provides
+insights into operational health. By collecting data across AWS resources, CloudWatch gives visibility into system-wide 
+performance and allows users to set alarms, automatically react to changes, and gain a unified view of operational health.
+- **CloudWatch Shared Dashboards** - allows you to share dashboards with people who do not have direct access to your AWS account.
+  This enables you to share dashboards across teams, with stakeholders, and with people external to your organization. 
+  You can even display dashboards on big screens in team areas, or embed them in Wikis and other webpages.
