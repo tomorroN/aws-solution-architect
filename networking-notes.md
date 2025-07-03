@@ -8,8 +8,8 @@ Full comparison: https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-compar
 **VPN CloudHub** - A managed VPN service that allows you to connect your on-premises network to AWS using IPsec VPN connections.
 If you have multiple AWS Site-to-Site VPN connections, you can provide secure communication between sites using the AWS VPN CloudHub.
 This enables your sites to communicate with each other, and not just with the resources in your VPC. 
-The VPN CloudHub operates on a simple hub-and-spoke model that you can use with or without a VPC. T
-his design is suitable if you have multiple branch offices and existing internet connections and would like to implement a convenient,
+The VPN CloudHub operates on a simple hub-and-spoke model that you can use with or without a VPC. This design is suitable
+if you have multiple branch offices and existing internet connections and would like to implement a convenient,
 potentially low-cost hub-and-spoke model for primary or backup connectivity between these sites.
 
 ![img.png](diagrams/vpn-cloud-hub-diagram.png)

@@ -64,7 +64,9 @@ Max 7 instances per AZ per group.
 - A **launch template** is similar to a **launch configuration**, in that it specifies instance configuration information. 
   It includes the ID of the Amazon Machine Image (AMI), the instance type, a key pair, security groups, and other parameters 
   used to launch EC2 instances. However, defining a launch template instead of a launch configuration allows you to have 
-- multiple versions of a launch template.
+  multiple versions of a launch template.
+- Using **Amazon CloudWatch** alarm actions, you can create alarms that automatically stop, terminate, reboot, or recover 
+  your EC2 instances
 
 **Amazon EBS (Elastic Block Store)** - high-performance block storage service designed for use with EC2 for both throughput
 and transaction-intensive workloads at any scale. By default, the root volume for an AMI backed by Amazon EBS is deleted
@@ -73,6 +75,18 @@ data stored at rest on the volume, data moving between the volume and the instan
 volumes created from those snapshots are all encrypted. It uses AWS Key Management Service (AWS KMS) customer master keys (CMK)
 when creating encrypted volumes and snapshots. Encryption operations occur on the servers that host Amazon EC2 instances,
 ensuring the security of both data-at-rest and data-in-transit between an instance and its attached Amazon EBS storage.
+
+**Network Load Balancer** - functions at the fourth layer of the Open Systems Interconnection (OSI) model. It can handle
+millions of requests per second. After the load balancer receives a connection request, it selects a target from the target
+group for the default rule. It attempts to open a TCP connection to the selected target on the port specified in the listener configuration.
+- Request Routing and IP Addresses
+  - If you specify targets using an instance ID, traffic is routed to instances using the primary private IP address specified
+    in the primary network interface for the instance. The load balancer rewrites the destination IP address from the data packet
+    before forwarding it to the target instance.
+  - If you specify targets using IP addresses, you can route traffic to an instance using any private IP address from one 
+    or more network interfaces. This enables multiple applications on an instance to use the same port. Note that each
+    network interface can have its security group. The load balancer rewrites the destination IP address before 
+    forwarding it to the target.
 
 **Amazon Relational Database Service (Amazon RDS)** - managed service that makes it easy to set up, operate, and scale a relational database
 in the cloud. It provides cost-efficient and resizable capacity, while managing time-consuming database administration tasks,
@@ -109,6 +123,8 @@ application monitoring, website search, and more. OpenSearch is an open source, 
 
 **Amazon Redshift** - fully-managed petabyte-scale cloud-based data warehouse product designed for large scale data set 
 storage and analysis. The given use-case is not about data warehousing, so this is not a correct option.
+- **Redshift Spectrum** - allows you to run queries against exabytes of data in S3 without having to load or transform the data.
+![img.png](diagrams/redshift-spectrum-diagram.png)
 
 **AWS Database Migration Service** - helps you migrate databases to AWS quickly and securely. The source database remains fully
 operational during the migration, minimizing downtime to applications that rely on the database. With AWS Database Migration Service,
@@ -168,6 +184,14 @@ to decouple the producers and consumers for the real-time data processor as desc
 **Amazon Simple Queue Service (Amazon SQS)** - offers a secure, durable, and available hosted queue that lets you integrate and
 decouple distributed software systems and components. SQS cannot be used to decouple the producers and consumers for the 
 real-time data processor as described in the given use-case.
+- Amazon SQS offers two types of message queues. 
+  - **Standard** queues offer maximum throughput, best-effort ordering, and at-least-once delivery. 
+  - **FIFO** queues are designed to guarantee that messages are processed exactly once, in the exact order that they are sent. 
+    By default, FIFO queues support up to 3,000 messages per second with batching, or up to 300 messages per second 
+    (300 send, receive, or delete operations per second) without batching. Therefore, using batching you can meet a throughput
+    requirement of upto 3,000 messages per second. The name of a FIFO queue must end with the .fifo suffix. 
+    The suffix counts towards the 80-character queue name limit. To determine whether a queue is FIFO, you can check whether
+    the queue name ends with the suffix.
 
 **AWS DataSync** - online data transfer service that simplifies, automates, and accelerates copying large amounts of data
 between on-premises storage systems and AWS Storage services, as well as between AWS Storage services. You can use AWS DataSync
@@ -184,4 +208,26 @@ that you consume—there’s no charge when your code isn’t running. You can r
 backend service—all with zero administration.
 - [Best practices for AWS Lambda](https://aws.amazon.com/blogs/architecture/best-practices-for-developing-on-aws-lambda/)
 - **Lambda layers** - distribution mechanism for libraries, custom runtimes, and other dependencies that you can use in your Lambda functions.
+
 ![img.png](diagrams/aws-lambda-layer-diagram.png)
+
+**AWS Config** - provides a detailed view of the configuration of AWS resources in your AWS account. This includes how the
+resources are related to one another and how they were configured in the past so that you can see how the configurations 
+and relationships change over time. An AWS resource is an entity you can work with in AWS, such as an 
+Amazon Elastic Compute Cloud (EC2) instance, an Amazon Elastic Block Store (EBS) volume, a security group, or an 
+Amazon Virtual Private Cloud (VPC). For a complete list of AWS resources supported by AWS Config, see [Supported 
+Resource Types for AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html).
+![img.png](diagrams/aws-config-diagram.png)
+
+**Amazon Cognito** - user identity and access management service that scales to hundreds of millions of users.
+User pools are for authentication. Your app users can sign in through the user pool, or federate through a third-party 
+identity provider (IdP). Identity pools are for authorization. You can use identity pools to create unique identities
+for users, and give them access to other AWS services.
+- Use a user pool in the following scenarios:
+  - Design sign-up and sign-in webpages for your app.
+  - Access and manage user data.
+  - Track your user device, location, and IP address, and adapt to sign-in requests of different risk levels.
+  - Use a custom authentication flow for your app.
+- Use an identity pool in the following scenarios:
+  - Give your users access to AWS resources, such as an Amazon Simple Storage Service (Amazon S3) bucket or an Amazon DynamoDB table.
+  - Generate temporary AWS credentials for unauthenticated users.
