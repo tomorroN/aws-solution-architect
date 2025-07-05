@@ -42,7 +42,10 @@ If object size is greater than 100 MB, multipart upload is recommended.
 - **S3 Object Lock** - Allows you to store objects using a write-once-read-many (WORM) model. It can help you prevent objects
 from being deleted or overwritten for a fixed amount of time or indefinitely.
 - **S3 Object Versioning** - Enables you to keep multiple versions of an object in the same bucket. It helps protect against accidental deletions
-- 
+- **Amazon S3 File Gateway** - seamlessly connects on-premises applications to the cloud to store and access archive repositories,
+  application data, and database backups as durable objects in Amazon S3. S3 File Gateway is used for on-premises data 
+  intensive applications that need file protocol access to objects in S3. For online data migrations, you can use. 
+  To migrate data offline, you can use AWS Snow Family.
 
 **Amazon EC2 (Elastic Compute Cloud)** - Virtual servers, auto-scaling, load balancing, security groups, EBS volumes.
 Max 7 instances per AZ per group.
@@ -88,6 +91,11 @@ group for the default rule. It attempts to open a TCP connection to the selected
     network interface can have its security group. The load balancer rewrites the destination IP address before 
     forwarding it to the target.
 
+**Gateway Load Balancer** - new type of load balancer that operates at layer 3 of the OSI model and is built on Hyperplane,
+which is capable of handling several thousands of connections per second. Gateway Load Balancer endpoints are configured
+in spoke VPCs originating or receiving traffic from the Internet. This architecture allows you to perform inline inspection
+of traffic from multiple spoke VPCs in a simplified and scalable fashion while still centralizing your virtual appliances.
+
 **Amazon Relational Database Service (Amazon RDS)** - managed service that makes it easy to set up, operate, and scale a relational database
 in the cloud. It provides cost-efficient and resizable capacity, while managing time-consuming database administration tasks,
 freeing you to focus on your applications and business. [Amazon RDS FAQs](https://aws.amazon.com/rds/faqs)
@@ -106,6 +114,8 @@ that manages the data for those DB instances.
   - **Cluster endpoint** - The primary endpoint for the Aurora DB cluster. It connects to the primary DB instance.
   - **Reader endpoint** - A load-balanced endpoint that distributes connections to all available Aurora Replicas in the cluster.
   - **Custom endpoint** - Allows you to create a custom endpoint that connects to a specific set of instances in the cluster.
+- A high-performance storage solution with reliable throughput and minimal latency is PIOPS SSD storage. Workloads like 
+  insert operations, which demand high I/O performance, are ideally suited for it.
 
 **Amazon DynamoDB** - NoSQL database, key-value and document store, global tables, on-demand capacity,  multi-region, 
 multi-master, durable database with built-in security, backup and restore, and in-memory caching. 
@@ -238,3 +248,8 @@ performance and allows users to set alarms, automatically react to changes, and 
 - **CloudWatch Shared Dashboards** - allows you to share dashboards with people who do not have direct access to your AWS account.
   This enables you to share dashboards across teams, with stakeholders, and with people external to your organization. 
   You can even display dashboards on big screens in team areas, or embed them in Wikis and other webpages.
+
+**Amazon AppFlow** - fully-managed integration service that enables you to securely exchange data between software as a 
+service (SaaS) applications, such as Salesforce, and AWS services, such as Amazon Simple Storage Service (Amazon S3) and Amazon Redshift.
+The use of Appflow helps to remove the ec2 as the middle layer which slows down the process of data transmission and introduce an additional variable.
+Appflow is also a fully managed AWS service, thus reducing the operational overhead.
